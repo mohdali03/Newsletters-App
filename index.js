@@ -1,6 +1,6 @@
 
 const functions = require('firebase-functions');
-
+const Dotenv = require('dotenv-webpack');
 // The Firebase Admin SDK to access Firestore.
 const admin = require('firebase-admin');
 admin.initializeApp();
@@ -51,7 +51,10 @@ app.post("/", (req, res) => {
 
     const option = {
         method: "POST", 
-        auth : "auth:9f6838b8e78c0bc3936190d0823150d6-us12"
+        headers:{
+
+            Authorization :  'auth 0b201d684378f8c755cd77799665d5d1-us12'
+        }
     }
     const request = https.request(url, option, function(response){
         if(response.statusCode === 200){
@@ -67,6 +70,7 @@ app.post("/", (req, res) => {
             
         })
 
+
     })
     request.write(jsonData);
     request.end();
@@ -77,6 +81,7 @@ app.post("/failure", (req,res)=>{
 })
 app.listen(process.env.PORT || 3000, () => {
     console.log("3000 is running");
+    console.log(process.env.API_KEY)
 })
 
 
